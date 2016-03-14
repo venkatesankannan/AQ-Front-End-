@@ -1,0 +1,60 @@
+
+
+<html ng-app="directoryApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Aquent UX Directory Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
+  </head>
+  <body ng-controller="DirectoryCtrl" class="bdy">
+	<h2><center>UX Society Members</center></h2><br>
+	<br>
+	
+	 <div id="custom-search-input">
+                            <div class="input-group col-md-12">
+                                <input type="text" class="  search-query form-control" placeholder="Search" value="Search" ng-model="searchquery" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-danger" type="button">
+                                        <span class=" glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+	<br>
+	<div class="row">
+	  <div class="col-xs-12 col-md-8">
+    <table class="table table-bordered">
+      <tr id= tablehead>
+        <th>Name</th>
+		<th>Occupation</th>
+        <th>Company</th>
+      </tr>
+      <tr ng-repeat="directory in directories | orderBy: 'firstName'| filter:searchquery | limitTo: 9" ng-class="{'selected':$index == selectedRow}" ng-click="setClickedRow($index)">
+        <td>{{directory.firstName +" "+ directory.surname}}</td>
+		<td>{{directory.occupation}}</td>
+        <td>{{directory.company}}</td>
+      </tr>
+    </table>
+    </div>
+    <div class="col-xs-6 col-md-4" id="custom-div-2">
+    <div ng-repeat="directory in directories |orderBy: 'firstName'| filter:searchquery" ng-show='selectedRow == $index'>
+  	<h4><center><strong>{{directory.firstName}}</strong></center> </h4>
+	 <center><img src="{{directory.portrait}}" class="img-thumbnail img-responsive img-circle"></center>
+		<br>
+		<p><left>Date of Birth: {{directory.birthday}}</left></p>
+		<p><left>{{directory.streetAddress}}</left></p>
+		<p><left>{{directory.city}}</left></p>
+		<p><left>{{directory.state}}</left></p>
+			<p><left><i><strong>"{{directory.motto}}"</strong></i></left></p>
+		
+		</div>
+	
+		
+		
+		</div>
+		</div>
+  </body>
+</html>
