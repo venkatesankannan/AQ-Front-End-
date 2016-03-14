@@ -1,2 +1,2 @@
-# Aquent
+# AQ
 Front-end AngularJS
